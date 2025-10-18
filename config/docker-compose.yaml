@@ -3,7 +3,7 @@ version: '3'
 services:
   women_typ_web:
     container_name: women_typ_web
-    image: vinhbh/typ-women-web:1.3
+    image: vinhbh/typ-women-web:1.4
     restart: always
     ports:
       - "3008:80"

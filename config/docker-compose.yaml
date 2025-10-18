@@ -3,14 +3,14 @@ version: '3'
 services:
   women_typ_web:
     container_name: women_typ_web
-    image: vinhbh/typ-women-web:1.1
+    image: vinhbh/typ-women-web:1.3
     restart: always
     ports:
       - "3008:80"
   women_typ_be:
     container_name: women_typ_be
     restart: always
-    image: vinhbh/typ-women-api:1.1
+    image: vinhbh/typ-women-api:1.3
     ports:
       - "8008:8000"
     command: npm run prod

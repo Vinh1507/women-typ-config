@@ -1,0 +1,45 @@
+version: '3'
+
+services:
+  women_typ_web:
+    container_name: women_typ_web
+    image: vinhbh/typ-women-web:1.1
+    restart: always
+    ports:
+      - "3008:80"
+  women_typ_be:
+    container_name: women_typ_be
+    restart: always
+    image: vinhbh/typ-women-api:1.1
+    ports:
+      - "8008:8000"
+    command: npm run prod
+    networks:
+      - women_typ_network_prod
+    depends_on:
+      - women_typ_mysql
+    environment:
+      ADMIN_KEY: abc
+    env_file:
+    - .env.server
+
+  women_typ_mysql:
+    image: mysql:8.0.37
+    restart: always
+    container_name: women_typ_mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: admin@123123123
+      MYSQL_DATABASE: women_typ
+    # ports:
+    #   - "3311:3306"
+    networks:
+      - women_typ_network_prod
+    volumes:
+      - women_typ_mysql_data_v2:/var/lib/mysql
+
+volumes:
+  women_typ_mysql_data_v2:
+
+networks:
+  women_typ_network_prod:
+    driver: bridge
